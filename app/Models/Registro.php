@@ -6,7 +6,7 @@ use CodeIgniter\Model;
 
 class Registro extends Model
 {
-    protected $table            = 'registros';
+    protected $table            = 'registro';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';
