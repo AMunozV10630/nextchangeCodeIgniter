@@ -40,7 +40,9 @@
       <aside class="col-3 sidebar">
           <div class="logo">
               <img src="/images/logo-nextchange.png" alt="Logo NextChange">
-              <h2>NextChange</h2>
+              <div class="logo-texto"> 
+                  <h2>NextChange</h2>
+              </div>
           </div>
           <div class="search-bar">
               <i class="fa-solid fa-magnifying-glass" id="searchIcon"></i>
@@ -61,7 +63,7 @@
 
       <main class="col-9 content">
       <!-- Página principal -->
-      <section id="pagina-principal" style="display:none; margin-left: 30px; margin-right: 30px;">
+      <section id="pagina-principal" style="margin-left: 30px; margin-right: 30px;">
           <header class="main-header">
               <h1>NextChange</h1>
               <p>¡Intercambia tu prenda con estilo y apoya la sostenibilidad!</p>
@@ -307,7 +309,7 @@
       </section>
 
       <!-- Sección Inicia Sesión -->
-      <section id="inicia-sesion" style="display:block; margin: 30px;">
+      <section id="inicia-sesion" style="display:none; margin: 30px;">
         <h2>Inicia Sesión</h2>
         <form id="form-inicio-sesion">
           <!-- correo electrónico y contraseña -->

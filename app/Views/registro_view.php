@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>NextChange</title>
     <!--Colocar ícono NextChange-->
-    <link rel="icon" href="../nextchange/images/icon-nextchange.ico">
+    <link rel="icon" href="/images/icon-nextchange.ico">
     <!--Enlazar con hoja CSS-->
     <link rel="stylesheet" href="styles.css">
     <!--Enlazar con hoja JavaScript-->  
@@ -39,8 +39,10 @@
       <!--Menú barra lateral-->     
       <aside class="col-3 sidebar">
           <div class="logo">
-              <img src="../nextchange/Images/logo-nextchange.png" alt="Logo NextChange">
-              <h2>NextChange</h2>
+              <img src="/images/logo-nextchange.png" alt="Logo NextChange">
+              <div class="logo-texto"> 
+                  <h2>NextChange</h2>
+              </div>
           </div>
           <div class="search-bar">
               <i class="fa-solid fa-magnifying-glass" id="searchIcon"></i>
@@ -61,7 +63,7 @@
 
       <main class="col-9 content">
       <!-- Página principal -->
-      <section id="pagina-principal" style="margin-left: 30px; margin-right: 30px;">
+      <section id="pagina-principal" style="display:none; margin-left: 30px; margin-right: 30px;">
           <header class="main-header">
               <h1>NextChange</h1>
               <p>¡Intercambia tu prenda con estilo y apoya la sostenibilidad!</p>
@@ -75,17 +77,17 @@
           </div>
 
           <div class="publications">
-            <div class="publication-card"><a href="#"><img src="../nextchange/images/ropa-vestido-rojo.jpg" class="img-fluid"
+            <div class="publication-card"><a href="#"><img src="/images/ropa-vestido-rojo.jpg" class="img-fluid"
                           onmouseover="ChangeImage(1,this)" onmouseout="ChangeImage(2,this)" alt="vestido rojo"></a>
               </div>
-              <div class="publication-card"><a href="#"><img src="../nextchange/images/zapatos-cafe-hombre.png" class="img-fluid"
+              <div class="publication-card"><a href="#"><img src="images/zapatos-cafe-hombre.png" class="img-fluid"
                           onmouseover="ChangeImage(3,this)" onmouseout="ChangeImage(4,this)" alt="zapatos cafés"></a>
               </div>
-              <div class="publication-card"><a href="#"><img src="../nextchange/images/accesorio-cinturon-mujer.jpg"
+              <div class="publication-card"><a href="#"><img src="/images/accesorio-cinturon-mujer.jpg"
                           class="img-fluid" onmouseover="ChangeImage(5,this)" onmouseout="ChangeImage(6,this)"
                           alt="accesorio cinturón vinotinto mujer"></a>
               </div>
-              <div class="publication-card"><a href="#"><img src="../nextchange/images/ropa-chaqueta-negra-hombre.png"
+              <div class="publication-card"><a href="#"><img src="/images/ropa-chaqueta-negra-hombre.png"
                           class="img-fluid" onmouseover="ChangeImage(7,this)" onmouseout="ChangeImage(8,this)"
                           alt="chaqueta negra hombre"></a>
               </div>
@@ -201,10 +203,10 @@
 
           <div class="publications">
               <div class="publication-card" data-usuario="mujer" data-marca="otra">
-                  <img src="../nextchange/images/ropa-vestido-rojo.jpg" class="img-fluid" alt="vestido rojo">
+                  <img src="/images/ropa-vestido-rojo.jpg" class="img-fluid" alt="vestido rojo">
               </div>
               <div class="publication-card" data-usuario="hombre" data-marca="otra">
-                  <img src="../nextchange/images/ropa-chaqueta-negra-hombre.png" class="img-fluid" alt="chaqueta negra">
+                  <img src="/images/ropa-chaqueta-negra-hombre.png" class="img-fluid" alt="chaqueta negra">
               </div>
           </div>
       </section>
@@ -233,7 +235,7 @@
 
           <div class="publications">
               <div class="publication-card" data-usuario="hombre" data-marca="otra">
-                  <img src="../nextchange/images/zapatos-cafe-hombre.png" class="img-fluid" alt="zapatos cafés">
+                  <img src="/images/zapatos-cafe-hombre.png" class="img-fluid" alt="zapatos cafés">
               </div>
           </div>
       </section>
@@ -261,13 +263,13 @@
 
           <div class="publications">
               <div class="publication-card" data-usuario="mujer" data-marca="gucci">
-                  <img src="../nextchange/images/accesorio-cinturon-mujer.jpg" class="img-fluid" alt="cinturón mujer">
+                  <img src="/images/accesorio-cinturon-mujer.jpg" class="img-fluid" alt="cinturón mujer">
               </div>
           </div>
       </section>
 
       <!--Sección de Registro -->
-      <section id="seccion-registro" style="display:none; margin: 30px;">
+      <section id="seccion-registro" style="display:block; margin: 30px;">
         <h2>Registro de Usuario</h2>
         <form id="form-registro">
           <!-- campos del formulario igual que antes -->
@@ -387,7 +389,7 @@
         </div>
 
         <div class="col-6 imageSostenibilidad">
-            <img src="../nextchange/Images/tulipan.jpg" class="img-fluid" alt="tulipan">
+            <img src="/Images/tulipan.jpg" class="img-fluid" alt="tulipan">
         </div>
       </div>
 
