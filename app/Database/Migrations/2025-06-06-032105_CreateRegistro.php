@@ -35,6 +35,10 @@ class CreateRegistro extends Migration
                 'type' => 'INT',
                 'constraint' => '50',
             ],
+            'contraseña' => [
+                'type' => 'VARCHAR',
+                'constraint' => '8',
+            ],
             'created_at DATETIME DEFAULT CURRENT_TIMESTAMP',
             'updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE
             CURRENT_TIMESTAMP',

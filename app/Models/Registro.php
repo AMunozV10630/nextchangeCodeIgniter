@@ -12,7 +12,7 @@ class Registro extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ["nombres","apellidos","correo_electronico","direccion","telefono"];
+    protected $allowedFields    = ["nombres","apellidos","correo_electronico","direccion","telefono","contraseña"];
 
     protected bool $allowEmptyInserts = false;
     protected bool $updateOnlyChanged = true;

@@ -21,7 +21,7 @@ class CreateInicioSesion extends Migration
             ],
             'contraseña' => [
                 'type' => 'VARCHAR',
-                'constraint' => '50',
+                'constraint' => '8',
             ],
             'created_at DATETIME DEFAULT CURRENT_TIMESTAMP',
             'updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE

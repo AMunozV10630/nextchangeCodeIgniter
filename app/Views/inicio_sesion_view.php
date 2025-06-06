@@ -291,6 +291,10 @@
             <label for="telefono" class="form-label">Teléfono</label>
             <input type="tel" class="form-control" id="telefono" required>
           </div>
+          <div class="mb-3">
+            <label for="contraseña" class="form-label">Contraseña</label>
+            <input type="password" class="form-control" id="contraseñaIS" required>
+          </div>
           <div class="mb-3 form-check">
             <input type="checkbox" class="form-check-input" id="terminos" required>
             <label class="form-check-label" for="terminos">
