@@ -304,6 +304,18 @@
             </label>
           </div>
           <button type="submit" class="btn btn-primary">Suscribirme</button>
+
+          <?php foreach ($registro as $elementoR): ?>
+                    <tr>
+                      <td><?= esc($elementoR['nombres']) ?></td>
+                      <td><?= esc($elementoR['apellidos']) ?></td>
+                      <td><?= esc($elementoR['correo_electronico']) ?></td>
+                      <td><?= esc($elementoR['direccion']) ?></td>
+                      <td><?= esc($elementoR['telefono']) ?></td>
+                      <td><?= esc($elementoR['contraseña']) ?></td>
+                    </tr>
+          <?php endforeach; ?>
+          
         </form>
 
         <!-- Contenedor para mensaje de éxito -->

@@ -341,3 +341,21 @@ document.getElementById('.btn-button3').addEventListener('click', function(event
 event.preventDefault();
 login();
 });
+
+//Contador visitas
+function contarCargaPagina() {
+  let elementoContador = localStorage.getItem("numero_vistas");
+  parseInt(elementoContador);
+
+  // Si es la primera vez que se carga la página o el contador no existe, inicialízalo en 1.
+  if (elementoContador == 0) {
+    elementoContador = 1;
+  } else {
+    // Si ya existe, conviértelo a número y auméntalo en 1.
+    elementoContador = parseInt(elementoContador) + 1;
+  }
+  elementoContador.toString();
+
+  localStorage.setItem("numero_vistas", elementoContador);
+  document.getElementById("numero_vistas").textContent = elementoContador;
+}

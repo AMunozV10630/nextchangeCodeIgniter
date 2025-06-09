@@ -327,6 +327,14 @@
             <label><a href="#olvido-contraseña">Olvidó su contraseña</a></label>
           </div>
               <button class="primary-button btn-button3">Iniciar</button>
+
+                  <?php foreach ($inicio_sesion as $elemento): ?>
+                    <tr>
+                      <td><?= esc($elemento['correo_electronico']) ?></td>
+                      <td><?= esc($elemento['contraseña']) ?></td>
+                    </tr>
+                  <?php endforeach; ?>
+                  
         </form>
       </section>
 

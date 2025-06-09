@@ -9,7 +9,7 @@
     <!--Enlazar con hoja CSS-->
     <link rel="stylesheet" href="styles.css">
     <!--Enlazar con hoja JavaScript-->  
-    <script src="main.js" defer></script> 
+    <script src="main.js"></script> 
     <!--Enlazar con Font Awesome-->
     <link
       rel="stylesheet"
@@ -392,8 +392,10 @@
                     data-bs-target="#miModal4">acá</a> para ver el uso de cookies.</p>
         </div>
 
-        <div class="col-6 imageSostenibilidad">
-            <img src="/Images/tulipan.jpg" class="img-fluid" alt="tulipan">
+        <div class="col-6">
+          <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d254508.51141489705!2d-74.107807!3d4.64829755!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e3f9bfd2da6cb29%3A0x239d635520a33914!2zQm9nb3TDoQ!5e0!3m2!1ses!2sco!4v1745572250678!5m2!1ses!2sco">
+          </iframe>
         </div>
       </div>
 
@@ -513,7 +515,19 @@
       <hr>
       <h3>NextChange</h3>
       <p>Copyright © 2025 All rights reserved</p>
-  </footer>   
+      <div class="social-buttons">
+        <a href="https://www.whatsapp.com/" target="_blank" class="social-icon whatsapp"><i class="fab fa-whatsapp"></i></a>
+        <a href="https://www.facebook.com/" target="_blank" class="social-icon facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://www.instagram.com/" target="_blank" class="social-icon instagram"><i class="fab fa-instagram"></i></a>
+      </div>
+  </footer> 
+
+<div id="contenedor-vistas">
+    Numero de vistas: <span type="number" id="numero_vistas">0</span>
+  <script defer>
+    window.addEventListener("load", contarCargaPagina);
+  </script>
+</div>
 
   <!--Enlace de Bootstrap con js-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"></script>
