@@ -244,22 +244,22 @@ document.getElementById('form-publicar').addEventListener('submit', function (ev
 
 // Manejadores de clic para la navegación
 document.querySelector('.btn-button2').addEventListener('click', function (event) {
-  event.preventDefault(); // Prevent default link behavior
+  event.preventDefault();
   mostrarSeccion('registro');
 });
 
 document.querySelector('.btn-button1').addEventListener('click', function (event) {
-  event.preventDefault(); // Prevent default link behavior
+  event.preventDefault();
   mostrarSeccion('inicioSesion');
 });
 
 document.querySelector('.btn-button4').addEventListener('click', function (event) {
-  event.preventDefault(); // Prevent default link behavior
+  event.preventDefault();
   mostrarSeccion('como-funciona');
 });
 
 document.querySelector('.btn-button5').addEventListener('click', function (event) {
-  event.preventDefault(); // Prevent default link behavior
+  event.preventDefault();
   mostrarSeccion('quienes-somos');
 });
 

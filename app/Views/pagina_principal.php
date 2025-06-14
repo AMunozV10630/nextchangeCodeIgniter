@@ -6,10 +6,10 @@
     <title>NextChange</title>
     <!--Colocar ícono NextChange-->
     <link rel="icon" href="/images/icon-nextchange.ico">
-    <!--Enlazar con hoja CSS-->
-    <link rel="stylesheet" href="styles.css">
+    <!--Enlazar con hoja CSS-->  
+    <link rel="stylesheet" href="<?= base_url() ?>/styles.css">
     <!--Enlazar con hoja JavaScript-->  
-    <script src="main.js"></script> 
+    <script src="<?= base_url() ?>/main.js" defer></script> 
     <!--Enlazar con Font Awesome-->
     <link
       rel="stylesheet"
