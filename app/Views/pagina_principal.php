@@ -6,10 +6,10 @@
     <title>NextChange</title>
     <!--Colocar ícono NextChange-->
     <link rel="icon" href="/images/icon-nextchange.ico">
-    <!--Enlazar con hoja CSS-->  
+    <!--Enlazar con hoja CSS-->
     <link rel="stylesheet" href="<?= base_url() ?>/styles.css">
     <!--Enlazar con hoja JavaScript-->  
-    <script src="<?= base_url() ?>/main.js" defer></script> 
+    <script src="<?= base_url() ?>/main.js" defer></script>
     <!--Enlazar con Font Awesome-->
     <link
       rel="stylesheet"
@@ -290,7 +290,7 @@
       </div>
 
       <!-- Sección Quienes Somos -->
-        <section id="seccion-quienes-somos" class="seccion-publicaciones" style="display:none; margin-left: 30px; margin-right: 30px;">
+        <section id="quienes-somos" class="seccion-publicaciones" style="display:none; margin-left: 30px; margin-right: 30px;">
             <h2>¿Quiénes somos?</h2>
             <p style="margin-top: 90px;">
             Somos una plataforma dedicada al intercambio de prendas usadas, creada para darle una segunda vida a la ropa y reducir el impacto ambiental de la industria textil. Aquí puedes subir las prendas que ya no usas, descubrir piezas únicas de otras personas y hacer intercambios de manera sencilla y segura. Al alargar la vida útil de la ropa, promovemos el consumo consciente, fomentamos la economía circular y contribuimos juntos a un futuro más sostenible. ¡Únete a la comunidad y transforma tu forma de vestir!

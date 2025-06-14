@@ -70,7 +70,7 @@ function ChangeImage(x, image){
 // Función que muestra un sección específica ('ropa', 'zapatos', 'publicar')
 function mostrarSeccion(seccion) {
   //Oculta todas la secciones y la página principal
-  const todasSecciones = document.querySelectorAll('main .seccion-publicaciones, #pagina-principal, #inicia-sesion, #como-funciona, #seccion-quienes-somos, #seccion-registro');
+  const todasSecciones = document.querySelectorAll('main .seccion-publicaciones, #pagina-principal, #inicia-sesion, #como-funciona, #quienes-somos, #seccion-registro');
   todasSecciones.forEach(sec => sec.style.display = 'none');
 
   //Muestra la sección solicitada
@@ -82,7 +82,7 @@ function mostrarSeccion(seccion) {
   } else if (seccion === 'como-funciona') {
       document.getElementById('como-funciona').style.display = 'block';
   } else if (seccion === 'quienes-somos') { 
-      document.getElementById('seccion-quienes-somos').style.display = 'block';
+      document.getElementById('quienes-somos').style.display = 'block';
   } else if (seccion === 'inicioSesion') {
       document.getElementById('inicia-sesion').style.display = 'block';
   //Visualiza el mensaje
@@ -116,7 +116,7 @@ function mostrarSeccion(seccion) {
 
 //Función que muestra la página principal
 function mostrarPaginaPrincipal() {
-  const todasSecciones = document.querySelectorAll('main .seccion-publicaciones, #inicia-sesion, #como-funciona, #seccion-quienes-somos, #seccion-registro');
+  const todasSecciones = document.querySelectorAll('main .seccion-publicaciones, #inicia-sesion, #como-funciona, #quienes-somos, #seccion-registro');
   todasSecciones.forEach(sec => sec.style.display = 'none');
   document.getElementById('pagina-principal').style.display = 'block';
 }
@@ -243,16 +243,6 @@ document.getElementById('form-publicar').addEventListener('submit', function (ev
 });
 
 // Manejadores de clic para la navegación
-document.querySelector('.btn-button2').addEventListener('click', function (event) {
-  event.preventDefault();
-  mostrarSeccion('registro');
-});
-
-document.querySelector('.btn-button1').addEventListener('click', function (event) {
-  event.preventDefault();
-  mostrarSeccion('inicioSesion');
-});
-
 document.querySelector('.btn-button4').addEventListener('click', function (event) {
   event.preventDefault();
   mostrarSeccion('como-funciona');
