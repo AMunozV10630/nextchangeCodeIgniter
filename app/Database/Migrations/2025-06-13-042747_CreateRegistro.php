@@ -9,7 +9,7 @@ class CreateRegistro extends Migration
     public function up()
     {
         $this->forge->addField([
-            'id' => [
+            'id_usuario' => [
                 'type' => 'INT',
                 'constraint' => 5,
                 'unsigned' => true,
@@ -25,30 +25,42 @@ class CreateRegistro extends Migration
             ],
             'correo_electronico' => [
                 'type' => 'VARCHAR',
-                'constraint' => '50',
+                'constraint' => '100',
+                'unique' => true,      
             ],
             'direccion' => [
                 'type' => 'VARCHAR',
-                'constraint' => '50',
+                'constraint' => '255', 
+                'null' => true,
             ],
             'telefono' => [
-                'type' => 'INT',
-                'constraint' => '50',
+                'type' => 'VARCHAR', 
+                'constraint' => '20', 
             ],
-            'contraseña' => [
+            'contrasena' => [
                 'type' => 'VARCHAR',
-                'constraint' => '8',
+                'constraint' => '255',
             ],
-            'created_at DATETIME DEFAULT CURRENT_TIMESTAMP',
-            'updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE
-            CURRENT_TIMESTAMP',
-            ]);
-            $this->forge->addKey('id', true);
-            $this->forge->createTable('registro');
+            'acepta_terminos' => [
+                'type' => 'TINYINT',
+                'constraint' => 1,
+                'default' => 0,
+            ],
+            'created_at' => [ 
+                'type' => 'DATETIME',
+                'null' => true,
+            ],
+            'updated_at' => [ 
+                'type' => 'DATETIME',
+                'null' => true,
+            ],
+        ]);
+        $this->forge->addKey('id_usuario', true);
+        $this->forge->createTable('registro');
     }
 
     public function down()
     {
-        //
+       //
     }
 }

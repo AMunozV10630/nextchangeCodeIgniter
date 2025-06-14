@@ -7,9 +7,9 @@
     <!--Colocar ícono NextChange-->
     <link rel="icon" href="/images/icon-nextchange.ico">
     <!--Enlazar con hoja CSS-->
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="<?= base_url() ?>/styles.css">
     <!--Enlazar con hoja JavaScript-->  
-    <script src="main.js" defer></script> 
+    <script src="<?= base_url() ?>/main.js" defer></script>
     <!--Enlazar con Font Awesome-->
     <link
       rel="stylesheet"
@@ -66,8 +66,8 @@
               <h1>NextChange</h1>
               <p>¡Intercambia tu prenda con estilo y apoya la sostenibilidad!</p>
               <div class="header-buttons">
-                  <button class="primary-button btn-button1">Inicia Sesión</button>
-                  <button class="secondary-button btn-button2">Regístrate</button>
+                <a href="<?= base_url('inicioSesion') ?>"><button class="primary-button btn-button1">Inicia Sesión</button></a>
+                <a href="<?= base_url('registro') ?>"><button class="secondary-button btn-button2">Regístrate</button></a>
               </div>
           </header>
           <div class="parrafo-publications">
@@ -266,82 +266,43 @@
           </div>
       </section>
 
-      <!--Sección de Registro -->
-      <section id="seccion-registro" style="display:none; margin: 30px;">
-        <h2>Registro de Usuario</h2>
-        <form id="form-registro">
-          <!-- campos del formulario igual que antes -->
-          <div class="mb-3">
-            <label for="nombres" class="form-label">Nombres</label>
-            <input type="text" class="form-control" id="nombres" required>
-          </div>
-          <div class="mb-3">
-            <label for="apellidos" class="form-label">Apellidos</label>
-            <input type="text" class="form-control" id="apellidos" required>
-          </div>
-          <div class="mb-3">
-            <label for="correo" class="form-label">Correo electrónico</label>
-            <input type="email" class="form-control" id="correo" required>
-          </div>
-          <div class="mb-3">
-            <label for="direccion" class="form-label">Dirección</label>
-            <input type="text" class="form-control" id="direccion" required>
-          </div>
-          <div class="mb-3">
-            <label for="telefono" class="form-label">Teléfono</label>
-            <input type="tel" class="form-control" id="telefono" required>
-          </div>
-          <div class="mb-3">
-            <label for="contraseña" class="form-label">Contraseña</label>
-            <input type="password" class="form-control" id="contraseñaIS" required>
-          </div>
-          <div class="mb-3 form-check">
-            <input type="checkbox" class="form-check-input" id="terminos" required>
-            <label class="form-check-label" for="terminos">
-              Acepto <a href="#informacion-legal">términos y condiciones</a>
-            </label>
-          </div>
-          <button type="submit" class="btn btn-primary">Suscribirme</button>
-        </form>
-
-        <!-- Contenedor para mensaje de éxito -->
-        <div id="mensaje-exito" class="alert alert-success mt-3" style="display:none;">
-          ¡Registro exitoso! Bienvenido a NextChange.
-        </div>
-      </section>
-
       <!-- Sección Inicia Sesión -->
       <section id="inicia-sesion" style="display:block; margin: 30px;">
         <h2>Inicia Sesión</h2>
-        <form id="form-inicio-sesion">
+        <form id="form-inicio-sesion" action="<?= base_url('inicioSesion/procesarInicioSesion') ?>" method="POST">
           <!-- correo electrónico y contraseña -->
-          <div class="mb-3">
-            <label for="usuario" class="form-label">Usuario (correo electrónico)</label>
-            <input type="email" class="form-control" id="usuario" required>
-          </div>
-          <div class="mb-3">
+            <div class="mb-3">
+            <label for="correo" class="form-label">Correo electrónico</label>
+            <input type="email" class="form-control" id="usuario" name="correo" required value="<?= old('correo') ?>">
+            </div>
+            <div class="mb-3">
             <label for="contraseña" class="form-label">Contraseña</label>
-            <input type="password" class="form-control" id="contraseña" required>
-          </div>
-          <div class="mb-3 form-check">
-            <label><a href="#olvido-contraseña">Olvidó su contraseña</a></label>
-          </div>
-              <button class="primary-button btn-button3">Iniciar</button>
-
-                  <?php foreach ($inicio_sesion as $elemento): ?>
-                    <tr>
-                      <td><?= esc($elemento['correo_electronico']) ?></td>
-                      <td><?= esc($elemento['contraseña']) ?></td>
-                    </tr>
-                  <?php endforeach; ?>
-                  
+            <input type="password" class="form-control" id="contraseñaIS" name="contraseña" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Iniciar sesión</button>
         </form>
-      </section>
 
-      <!-- Contenedor para mensaje de inicio de sesion -->
-      <div id="mensaje-inicio-sesion" class="alert alert-success mt-3" style="display:none;">
-        ¡Sesión Iniciada! Bienvenido a NextChange.
-      </div>
+        <?php if (isset($_GET['status']) && $_GET['status'] == 'success'): ?>
+            <div id="mensaje-inicio-sesion-php" class="alert alert-success mt-3" style="display:block;">
+                ¡Inicio de sesión exitoso!
+            </div>
+        <?php endif; ?>
+
+        <?php if (session()->getFlashdata('error')): ?>
+            <div class="alert alert-danger mt-3" style="display:block;">
+                <?= session()->getFlashdata('error') ?>
+            </div>
+        <?php endif; ?>
+
+        <?php if (isset($errors)): ?>
+            <div class="alert alert-danger mt-3" style="display:block;">
+                <ul>
+                    <?php foreach ($errors as $error): ?>
+                        <li><?= esc($error) ?></li>
+                    <?php endforeach ?>
+                </ul>
+            </div>
+        <?php endif; ?>
 
       <div class="container">
         <!-- Sección Como Funciona -->
@@ -398,8 +359,10 @@
                     data-bs-target="#miModal4">acá</a> para ver el uso de cookies.</p>
         </div>
 
-        <div class="col-6 imageSostenibilidad">
-            <img src="/Images/tulipan.jpg" class="img-fluid" alt="tulipan">
+        <div class="col-6">
+          <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d254508.51141489705!2d-74.107807!3d4.64829755!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e3f9bfd2da6cb29%3A0x239d635520a33914!2zQm9nb3TDoQ!5e0!3m2!1ses!2sco!4v1745572250678!5m2!1ses!2sco">
+          </iframe>
         </div>
       </div>
 
@@ -519,7 +482,12 @@
       <hr>
       <h3>NextChange</h3>
       <p>Copyright © 2025 All rights reserved</p>
-  </footer>   
+      <div class="social-buttons">
+        <a href="https://www.whatsapp.com/" target="_blank" class="social-icon whatsapp"><i class="fab fa-whatsapp"></i></a>
+        <a href="https://www.facebook.com/" target="_blank" class="social-icon facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://www.instagram.com/" target="_blank" class="social-icon instagram"><i class="fab fa-instagram"></i></a>
+      </div>
+  </footer>  
 
   <!--Enlace de Bootstrap con js-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"></script>

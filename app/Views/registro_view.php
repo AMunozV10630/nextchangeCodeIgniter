@@ -6,10 +6,10 @@
     <title>NextChange</title>
     <!--Colocar ícono NextChange-->
     <link rel="icon" href="/images/icon-nextchange.ico">
-    <!--Enlazar con hoja CSS-->
-    <link rel="stylesheet" href="styles.css">
+    <!--Enlazar con hoja CSS-->  
+    <link rel="stylesheet" href="<?= base_url() ?>/styles.css">
     <!--Enlazar con hoja JavaScript-->  
-    <script src="main.js" defer></script> 
+    <script src="<?= base_url() ?>/main.js" defer></script> 
     <!--Enlazar con Font Awesome-->
     <link
       rel="stylesheet"
@@ -68,8 +68,8 @@
               <h1>NextChange</h1>
               <p>¡Intercambia tu prenda con estilo y apoya la sostenibilidad!</p>
               <div class="header-buttons">
-                  <button class="primary-button btn-button1">Inicia Sesión</button>
-                  <button class="secondary-button btn-button2">Regístrate</button>
+                <a href="<?= base_url('inicioSesion') ?>"><button class="primary-button btn-button1">Inicia Sesión</button></a>
+                <a href="<?= base_url('registro') ?>"><button class="secondary-button btn-button2">Regístrate</button></a>
               </div>
           </header>
           <div class="parrafo-publications">
@@ -271,83 +271,84 @@
       <!--Sección de Registro -->
       <section id="seccion-registro" style="display:block; margin: 30px;">
         <h2>Registro de Usuario</h2>
-        <form id="form-registro">
-          <!-- campos del formulario igual que antes -->
+        <form id="form-registro" action="<?= base_url('registro/procesarRegistro') ?>" method="POST">
           <div class="mb-3">
             <label for="nombres" class="form-label">Nombres</label>
-            <input type="text" class="form-control" id="nombres" required>
+            <input type="text" class="form-control" id="nombres" name="nombres" value="<?= old('nombres') ?>" required>
+            <?php if (session()->getFlashdata('errors') && isset(session()->getFlashdata('errors')['nombres'])): ?>
+              <p class="text-danger"><?= session()->getFlashdata('errors')['nombres'] ?></p>
+            <?php endif; ?>
           </div>
+
           <div class="mb-3">
             <label for="apellidos" class="form-label">Apellidos</label>
-            <input type="text" class="form-control" id="apellidos" required>
+            <input type="text" class="form-control" id="apellidos" name="apellidos" value="<?= old('apellidos') ?>" required>
+            <?php if (session()->getFlashdata('errors') && isset(session()->getFlashdata('errors')['apellidos'])): ?>
+              <p class="text-danger"><?= session()->getFlashdata('errors')['apellidos'] ?></p>
+            <?php endif; ?>
           </div>
+
           <div class="mb-3">
             <label for="correo" class="form-label">Correo electrónico</label>
-            <input type="email" class="form-control" id="correo" required>
+            <input type="email" class="form-control" id="correo" name="correo" value="<?= old('correo') ?>" required>
+            <?php if (session()->getFlashdata('errors') && isset(session()->getFlashdata('errors')['correo'])): ?>
+              <p class="text-danger"><?= session()->getFlashdata('errors')['correo'] ?></p>
+            <?php endif; ?>
           </div>
+
           <div class="mb-3">
             <label for="direccion" class="form-label">Dirección</label>
-            <input type="text" class="form-control" id="direccion" required>
+            <input type="text" class="form-control" id="direccion" name="direccion" value="<?= old('direccion') ?>" required>
+            <?php if (session()->getFlashdata('errors') && isset(session()->getFlashdata('errors')['direccion'])): ?>
+              <p class="text-danger"><?= session()->getFlashdata('errors')['direccion'] ?></p>
+            <?php endif; ?>
           </div>
+
           <div class="mb-3">
             <label for="telefono" class="form-label">Teléfono</label>
-            <input type="tel" class="form-control" id="telefono" required>
+            <input type="tel" class="form-control" id="telefono" name="telefono" value="<?= old('telefono') ?>" required>
+            <?php if (session()->getFlashdata('errors') && isset(session()->getFlashdata('errors')['telefono'])): ?>
+              <p class="text-danger"><?= session()->getFlashdata('errors')['telefono'] ?></p>
+            <?php endif; ?>
           </div>
+
           <div class="mb-3">
             <label for="contraseña" class="form-label">Contraseña</label>
-            <input type="password" class="form-control" id="contraseñaIS" required>
+            <input type="password" class="form-control" id="contraseña" name="contraseña" required>
+            <?php if (session()->getFlashdata('errors') && isset(session()->getFlashdata('errors')['contraseña'])): ?>
+              <p class="text-danger"><?= session()->getFlashdata('errors')['contraseña'] ?></p>
+            <?php endif; ?>
           </div>
+
           <div class="mb-3 form-check">
-            <input type="checkbox" class="form-check-input" id="terminos" required>
+            <input type="checkbox" class="form-check-input" id="terminos" name="terminos" value="1" <?= old('terminos') ? 'checked' : '' ?> required>
             <label class="form-check-label" for="terminos">
               Acepto <a href="#informacion-legal">términos y condiciones</a>
             </label>
+            <?php if (session()->getFlashdata('errors') && isset(session()->getFlashdata('errors')['terminos'])): ?>
+              <p class="text-danger"><?= session()->getFlashdata('errors')['terminos'] ?></p>
+            <?php endif; ?>
           </div>
+
           <button type="submit" class="btn btn-primary">Suscribirme</button>
-
-          <?php foreach ($registro as $elementoR): ?>
-                    <tr>
-                      <td><?= esc($elementoR['nombres']) ?></td>
-                      <td><?= esc($elementoR['apellidos']) ?></td>
-                      <td><?= esc($elementoR['correo_electronico']) ?></td>
-                      <td><?= esc($elementoR['direccion']) ?></td>
-                      <td><?= esc($elementoR['telefono']) ?></td>
-                      <td><?= esc($elementoR['contraseña']) ?></td>
-                    </tr>
-          <?php endforeach; ?>
-          
         </form>
 
-        <!-- Contenedor para mensaje de éxito -->
-        <div id="mensaje-exito" class="alert alert-success mt-3" style="display:none;">
-          ¡Registro exitoso! Bienvenido a NextChange.
-        </div>
-      </section>
+        <?php if (session()->getFlashdata('success')): ?>
+            <div id="mensaje-exito" class="alert alert-success mt-3" style="display:block;">
+              <?= session()->getFlashdata('success') ?>
+            </div>
+        <?php elseif (session()->getFlashdata('error')): ?>
+            <div class="alert alert-danger mt-3" style="display:block;">
+              <?= session()->getFlashdata('error') ?>
+            </div>
+        <?php endif; ?>
 
-      <!-- Sección Inicia Sesión -->
-      <section id="inicia-sesion" style="display:none; margin: 30px;">
-        <h2>Inicia Sesión</h2>
-        <form id="form-inicio-sesion">
-          <!-- correo electrónico y contraseña -->
-          <div class="mb-3">
-            <label for="usuario" class="form-label">Usuario (correo electrónico)</label>
-            <input type="email" class="form-control" id="usuario" required>
+        <?php if (isset($_GET['status']) && $_GET['status'] == 'success'): ?>
+          <div id="mensaje-exito" class="alert alert-success mt-3" style="display:block;">
+            ¡Registro exitoso! Bienvenido a NextChange.
           </div>
-          <div class="mb-3">
-            <label for="contraseña" class="form-label">Contraseña</label>
-            <input type="password" class="form-control" id="contraseña" required>
-          </div>
-          <div class="mb-3 form-check">
-            <label><a href="#olvido-contraseña">Olvidó su contraseña</a></label>
-          </div>
-              <button class="primary-button btn-button3">Iniciar</button>
-        </form>
+        <?php endif; ?>
       </section>
-
-      <!-- Contenedor para mensaje de inicio de sesion -->
-      <div id="mensaje-inicio-sesion" class="alert alert-success mt-3" style="display:none;">
-        ¡Sesión Iniciada! Bienvenido a NextChange.
-      </div>
 
       <div class="container">
         <!-- Sección Como Funciona -->
@@ -404,8 +405,10 @@
                     data-bs-target="#miModal4">acá</a> para ver el uso de cookies.</p>
         </div>
 
-        <div class="col-6 imageSostenibilidad">
-            <img src="/Images/tulipan.jpg" class="img-fluid" alt="tulipan">
+        <div class="col-6">
+          <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d254508.51141489705!2d-74.107807!3d4.64829755!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e3f9bfd2da6cb29%3A0x239d635520a33914!2zQm9nb3TDoQ!5e0!3m2!1ses!2sco!4v1745572250678!5m2!1ses!2sco">
+          </iframe>
         </div>
       </div>
 
@@ -525,6 +528,11 @@
       <hr>
       <h3>NextChange</h3>
       <p>Copyright © 2025 All rights reserved</p>
+      <div class="social-buttons">
+        <a href="https://www.whatsapp.com/" target="_blank" class="social-icon whatsapp"><i class="fab fa-whatsapp"></i></a>
+        <a href="https://www.facebook.com/" target="_blank" class="social-icon facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://www.instagram.com/" target="_blank" class="social-icon instagram"><i class="fab fa-instagram"></i></a>
+      </div>
   </footer>   
 
   <!--Enlace de Bootstrap con js-->

@@ -9,7 +9,7 @@ class CreateInicioSesion extends Migration
     public function up()
     {
         $this->forge->addField([
-            'id' => [
+            'id_usuario' => [
                 'type' => 'INT',
                 'constraint' => 5,
                 'unsigned' => true,
@@ -17,18 +17,20 @@ class CreateInicioSesion extends Migration
             ],
             'correo_electronico' => [
                 'type' => 'VARCHAR',
-                'constraint' => '50',
+                'constraint' => '100',
+                'unique' => true,      
             ],
-            'contraseña' => [
-                'type' => 'VARCHAR',
-                'constraint' => '8',
+            'created_at' => [ 
+                'type' => 'DATETIME',
+                'null' => true,
             ],
-            'created_at DATETIME DEFAULT CURRENT_TIMESTAMP',
-            'updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE
-            CURRENT_TIMESTAMP',
-            ]);
-            $this->forge->addKey('id', true);
-            $this->forge->createTable('inicio_sesion');
+            'updated_at' => [ 
+                'type' => 'DATETIME',
+                'null' => true,
+            ],
+        ]);
+        $this->forge->addKey('id_usuario', true);
+        $this->forge->createTable('inicio_sesion');
     }
 
     public function down()

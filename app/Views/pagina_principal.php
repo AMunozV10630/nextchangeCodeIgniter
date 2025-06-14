@@ -68,8 +68,8 @@
               <h1>NextChange</h1>
               <p>¡Intercambia tu prenda con estilo y apoya la sostenibilidad!</p>
               <div class="header-buttons">
-                  <button class="primary-button btn-button1">Inicia Sesión</button>
-                  <button class="secondary-button btn-button2">Regístrate</button>
+                <a href="<?= base_url('inicioSesion') ?>"><button class="primary-button btn-button1">Inicia Sesión</button></a>
+                <a href="<?= base_url('registro') ?>"><button class="secondary-button btn-button2">Regístrate</button></a>
               </div>
           </header>
           <div class="parrafo-publications">
@@ -267,75 +267,6 @@
               </div>
           </div>
       </section>
-
-      <!--Sección de Registro -->
-      <section id="seccion-registro" style="display:none; margin: 30px;">
-        <h2>Registro de Usuario</h2>
-        <form id="form-registro">
-          <!-- campos del formulario igual que antes -->
-          <div class="mb-3">
-            <label for="nombres" class="form-label">Nombres</label>
-            <input type="text" class="form-control" id="nombres" required>
-          </div>
-          <div class="mb-3">
-            <label for="apellidos" class="form-label">Apellidos</label>
-            <input type="text" class="form-control" id="apellidos" required>
-          </div>
-          <div class="mb-3">
-            <label for="correo" class="form-label">Correo electrónico</label>
-            <input type="email" class="form-control" id="correo" required>
-          </div>
-          <div class="mb-3">
-            <label for="direccion" class="form-label">Dirección</label>
-            <input type="text" class="form-control" id="direccion" required>
-          </div>
-          <div class="mb-3">
-            <label for="telefono" class="form-label">Teléfono</label>
-            <input type="tel" class="form-control" id="telefono" required>
-          </div>
-          <div class="mb-3">
-            <label for="contraseña" class="form-label">Contraseña</label>
-            <input type="password" class="form-control" id="contraseñaIS" required>
-          </div>
-          <div class="mb-3 form-check">
-            <input type="checkbox" class="form-check-input" id="terminos" required>
-            <label class="form-check-label" for="terminos">
-              Acepto <a href="#informacion-legal">términos y condiciones</a>
-            </label>
-          </div>
-          <button type="submit" class="btn btn-primary">Suscribirme</button>
-        </form>
-
-        <!-- Contenedor para mensaje de éxito -->
-        <div id="mensaje-exito" class="alert alert-success mt-3" style="display:none;">
-          ¡Registro exitoso! Bienvenido a NextChange.
-        </div>
-      </section>
-
-      <!-- Sección Inicia Sesión -->
-      <section id="inicia-sesion" style="display:none; margin: 30px;">
-        <h2>Inicia Sesión</h2>
-        <form id="form-inicio-sesion">
-          <!-- correo electrónico y contraseña -->
-          <div class="mb-3">
-            <label for="usuario" class="form-label">Usuario (correo electrónico)</label>
-            <input type="email" class="form-control" id="usuario" required>
-          </div>
-          <div class="mb-3">
-            <label for="contraseña" class="form-label">Contraseña</label>
-            <input type="password" class="form-control" id="contraseña" required>
-          </div>
-          <div class="mb-3 form-check">
-            <label><a href="#olvido-contraseña">Olvidó su contraseña</a></label>
-          </div>
-              <button class="primary-button btn-button3">Iniciar</button>
-        </form>
-      </section>
-
-      <!-- Contenedor para mensaje de inicio de sesion -->
-      <div id="mensaje-inicio-sesion" class="alert alert-success mt-3" style="display:none;">
-        ¡Sesión Iniciada! Bienvenido a NextChange.
-      </div>
 
       <div class="container">
         <!-- Sección Como Funciona -->

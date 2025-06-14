@@ -37,7 +37,7 @@ function ChangeImage(x, image){
       image.src="/images/info-ropa-vestido-rojo.png";
     break;
 
-    case 2: 
+    case 2:
       image.src="/images/ropa-vestido-rojo.jpg";
     break;
 
@@ -67,45 +67,58 @@ function ChangeImage(x, image){
   }
 }
 
-function mostrarSeccion(event, id) {
-    event.preventDefault(); // evitar que el link haga scroll o cambie URL
-    
-    // Ocultar página principal
-    document.getElementById('pagina-principal').style.display = 'none';
-
-    // Ocultar todas las secciones
-    const secciones = document.querySelectorAll('.seccion-publicaciones');
-    secciones.forEach(seccion => {
-        seccion.style.display = seccion.id === id ? 'block' : 'none';
-    });
-}
-
-function mostrarPaginaPrincipal(event) {
-    if(event) event.preventDefault();
-
-    // Mostrar página principal
-    document.getElementById('pagina-principal').style.display = 'block';
-
-    // Ocultar todas las secciones
-    const secciones = document.querySelectorAll('.seccion-publicaciones');
-    secciones.forEach(seccion => {
-        seccion.style.display = 'none';
-    });
-}
+// Función que muestra un sección específica ('ropa', 'zapatos', 'publicar')
 function mostrarSeccion(seccion) {
-    // Ocultar todo lo que tenga clase seccion-publicaciones y pagina-principal
-    document.querySelectorAll('.seccion-publicaciones, #pagina-principal').forEach(el => el.style.display = 'none');
+  //Oculta todas la secciones y la página principal
+  const todasSecciones = document.querySelectorAll('main .seccion-publicaciones, #pagina-principal, #inicia-sesion, #como-funciona, #seccion-quienes-somos, #seccion-registro');
+  todasSecciones.forEach(sec => sec.style.display = 'none');
 
-    // Mostrar la sección que corresponde
-    const elemento = document.getElementById('seccion-' + seccion);
-    if (elemento) {
-        elemento.style.display = 'block';
+  //Muestra la sección solicitada
+  const elemento = document.getElementById('seccion-' + seccion);
+  if (elemento) {
+      elemento.style.display = 'block';
+  } else if (seccion === 'publicar') { 
+      document.getElementById('seccion-publicar').style.display = 'block';
+  } else if (seccion === 'como-funciona') {
+      document.getElementById('como-funciona').style.display = 'block';
+  } else if (seccion === 'quienes-somos') { 
+      document.getElementById('seccion-quienes-somos').style.display = 'block';
+  } else if (seccion === 'inicioSesion') {
+      document.getElementById('inicia-sesion').style.display = 'block';
+  //Visualiza el mensaje
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('status') === 'success') {
+      const mensajeExitoPHP = document.getElementById('mensaje-inicio-sesion-php');
+      if (mensajeExitoPHP) {
+        mensajeExitoPHP.style.display = 'block';
+          //Se oculta un tiempo después
+          setTimeout(() => {
+            mensajeExitoPHP.style.display = 'none';
+          }, 3000);
+      }
     }
+  } else if (seccion === 'registro') {
+      document.getElementById('seccion-registro').style.display = 'block';
+      //Visualiza el mensaje
+      const urlParams = new URLSearchParams(window.location.search);
+      if (urlParams.get('status') === 'success') {
+        const mensajeExitoPHP = document.getElementById('mensaje-exito'); // Use the ID from registro_view.php
+        if (mensajeExitoPHP) {
+          mensajeExitoPHP.style.display = 'block';
+            //Se oculta un tiempo después
+            setTimeout(() => {
+                  mensajeExitoPHP.style.display = 'none';
+            }, 3000);
+        }
+      }
+  }
 }
 
+//Función que muestra la página principal
 function mostrarPaginaPrincipal() {
-    document.querySelectorAll('.seccion-publicaciones').forEach(el => el.style.display = 'none');
-    document.getElementById('pagina-principal').style.display = 'block';
+  const todasSecciones = document.querySelectorAll('main .seccion-publicaciones, #inicia-sesion, #como-funciona, #seccion-quienes-somos, #seccion-registro');
+  todasSecciones.forEach(sec => sec.style.display = 'none');
+  document.getElementById('pagina-principal').style.display = 'block';
 }
 
 function filtrarPublicaciones(seccionId) {
@@ -161,51 +174,9 @@ function limpiarFiltros(seccionId) {
 
     seccion.querySelectorAll('.publication-card').forEach(pub => pub.style.display = 'flex');
 }
-function mostrarSeccion(seccion) {
-  const todasSecciones = document.querySelectorAll('main .seccion-publicaciones, #pagina-principal');
-  todasSecciones.forEach(sec => sec.style.display = 'none');
 
-  if (seccion === 'publicar') {
-    document.getElementById('seccion-publicar').style.display = 'block';
-  } else if (seccion === 'ropa') {
-    document.getElementById('seccion-ropa').style.display = 'block';
-  } else if (seccion === 'zapatos') {
-    document.getElementById('seccion-zapatos').style.display = 'block';
-  } else if (seccion === 'accesorios') {
-    document.getElementById('seccion-accesorios').style.display = 'block';
-  }
-}
 
-function mostrarPaginaPrincipal() {
-  const todasSecciones = document.querySelectorAll('main .seccion-publicaciones, #pagina-principal');
-  todasSecciones.forEach(sec => sec.style.display = 'none');
-  document.getElementById('pagina-principal').style.display = 'block';
-}
-// main.js
-
-// Funciones para mostrar/ocultar secciones
-function mostrarPaginaPrincipal() {
-  document.getElementById('pagina-principal').style.display = 'block';
-  document.getElementById('seccion-ropa').style.display = 'none';
-  document.getElementById('seccion-zapatos').style.display = 'none';
-  document.getElementById('seccion-accesorios').style.display = 'none';
-  document.getElementById('seccion-publicar').style.display = 'none';
-    document.getElementById('como-funciona').style.display = 'none';
-    document.getElementById('seccion-quienes-somos').style.display = 'none';
-}
-
-function mostrarSeccion(seccion) {
-  mostrarPaginaPrincipal(); // primero ocultamos todas
-  document.getElementById('pagina-principal').style.display = 'none';
-
-  document.getElementById('seccion-ropa').style.display = (seccion === 'ropa') ? 'block' : 'none';
-  document.getElementById('seccion-zapatos').style.display = (seccion === 'zapatos') ? 'block' : 'none';
-  document.getElementById('seccion-accesorios').style.display = (seccion === 'accesorios') ? 'block' : 'none';
-  document.getElementById('seccion-publicar').style.display = (seccion === 'publicar') ? 'block' : 'none';
-    document.getElementById('como-funciona').style.display = (seccion === 'publicar') ? 'block' : 'none';
-    document.getElementById('seccion-quienes-somos').style.display = (seccion === 'publicar') ? 'block' : 'none';
-}
-// Manejar envío del formulario
+// Manejar envío del formulario de publicación de artículo
 document.getElementById('form-publicar').addEventListener('submit', function (event) {
   event.preventDefault();
 
@@ -219,9 +190,9 @@ document.getElementById('form-publicar').addEventListener('submit', function (ev
   const telefono = document.getElementById('telefonoVendedor').value;
   const mensaje = document.getElementById('mensajeAdicional').value;
 
-  // NUEVOS CAMPOS
-  const usuarioArticulo = document.getElementById('usuarioArticulo').value; // Este debe estar en tu formulario
-  const marcaArticulo = document.getElementById('marcaArticulo').value;     // Este también
+  //Nuevos campos
+  const usuarioArticulo = document.getElementById('usuarioArticulo').value;
+  const marcaArticulo = document.getElementById('marcaArticulo').value;
 
   // Validar que haya al menos una foto
   if (fotosInput.files.length === 0) {
@@ -229,32 +200,32 @@ document.getElementById('form-publicar').addEventListener('submit', function (ev
     return;
   }
 
-  // Crear contenedor para la nueva publicación
+  //Crear contenedor para la nueva publicación
   const nuevaPublicacion = document.createElement('div');
   nuevaPublicacion.className = 'publication-card';
 
-  // Usaremos la primera foto para mostrar
+  //Usaremos la primera foto para mostrar
   const fotoURL = URL.createObjectURL(fotosInput.files[0]);
   const img = document.createElement('img');
   img.src = fotoURL;
   img.className = 'img-fluid';
   img.alt = nombre;
 
-  // Agregar imagen y datos como tooltip o descripción
+  //Agregar imagen y datos como tooltip o descripción
   nuevaPublicacion.appendChild(img);
 
-  // Guardar en atributos data para luego filtrar con JS
+  //Guardar en atributos data para luego filtrar con JS
   nuevaPublicacion.setAttribute('data-usuario', usuarioArticulo);
   nuevaPublicacion.setAttribute('data-marca', marcaArticulo);
 
-  // Crear un tooltip con la descripción y datos básicos
+  //Crear un tooltip con la descripción y datos básicos
   nuevaPublicacion.title = `${nombre}\nTipo: ${tipo}\nDescripción: ${descripcion}\nVendedor: ${usuario}\nCorreo: ${correo}\nTeléfono: ${telefono}\nMensaje: ${mensaje}\nUsuario Artículo: ${usuarioArticulo}\nMarca: ${marcaArticulo}`;
 
-  // Agregar a la página principal
+  //Agregar a la página principal
   const contenedorPrincipal = document.querySelector('#pagina-principal .publications');
   contenedorPrincipal.appendChild(nuevaPublicacion);
 
-  // Agregar a la sección correspondiente
+  //Agregar a la sección correspondiente
   const contenedorCategoria = document.querySelector(`#seccion-${tipo} .publications`);
   if (contenedorCategoria) {
     // Clonar para que aparezca en ambas secciones (o crear uno nuevo si prefieres)
@@ -270,92 +241,65 @@ document.getElementById('form-publicar').addEventListener('submit', function (ev
 
   alert('¡Tu artículo fue publicado exitosamente!');
 });
-// Mostrar sección de registro
-document.querySelector('.btn-button2').addEventListener('click', function () {
-  ocultarTodasLasSecciones();
-  document.getElementById('seccion-registro').style.display = 'block';
+
+// Manejadores de clic para la navegación
+document.querySelector('.btn-button2').addEventListener('click', function (event) {
+  event.preventDefault(); // Prevent default link behavior
+  mostrarSeccion('registro');
 });
 
-// Función para ocultar todas las secciones
-function ocultarTodasLasSecciones() {
-  const secciones = document.querySelectorAll('main section');
-  secciones.forEach(seccion => seccion.style.display = 'none');
-}
-const formRegistro = document.getElementById('form-registro');
-const mensajeExito = document.getElementById('mensaje-exito');
-const seccionRegistro = document.getElementById('seccion-registro');
-const paginaPrincipal = document.getElementById('pagina-principal');
-const mensajeSesion = document.getElementById('mensaje-inicio-sesion');
-
-formRegistro.addEventListener('submit', function(event) {
-  event.preventDefault();
-
-  // Ocultar el formulario
-  formRegistro.style.display = 'none';
-
-  // Mostrar mensaje de éxito
-  mensajeExito.style.display = 'block';
-
-  // Esperar 3 segundos
-  setTimeout(() => {
-    // Ocultar mensaje de éxito y sección registro
-    mensajeExito.style.display = 'none';
-    seccionRegistro.style.display = 'none';
-
-    // Mostrar página principal
-    paginaPrincipal.style.display = 'block';
-  }, 3000);
+document.querySelector('.btn-button1').addEventListener('click', function (event) {
+  event.preventDefault(); // Prevent default link behavior
+  mostrarSeccion('inicioSesion');
 });
 
-// Mostrar sección de inicio de sesion
-document.querySelector('.btn-button1').addEventListener('click', function () {
-  ocultarTodasLasSecciones();
-  document.getElementById('inicia-sesion').style.display = 'block';
+document.querySelector('.btn-button4').addEventListener('click', function (event) {
+  event.preventDefault(); // Prevent default link behavior
+  mostrarSeccion('como-funciona');
 });
 
-// Mostrar sección como funciona
-document.querySelector('.btn-button4').addEventListener('click', function () {
-  ocultarTodasLasSecciones();
-  document.getElementById('como-funciona').style.display = 'block';
+document.querySelector('.btn-button5').addEventListener('click', function (event) {
+  event.preventDefault(); // Prevent default link behavior
+  mostrarSeccion('quienes-somos');
 });
 
-// Mostrar sección quienes somos
-document.querySelector('.btn-button5').addEventListener('click', function () {
-  ocultarTodasLasSecciones();
-  document.getElementById('seccion-quienes-somos').style.display = 'block';
+// Link de navegacion en el sidebar
+document.querySelector('a[onclick="mostrarPaginaPrincipal()"]').addEventListener('click', function(event) {
+    event.preventDefault();
+    mostrarPaginaPrincipal();
 });
-
-function login() {
-var usuario = document.getElementById('usuario').value;
-var contraseña = document.getElementById('contraseña').value;
-if (usuario == "ean@universidadean.edu.co" && contraseña == "EAN") {
-      // Mostrar mensaje de inicio sesion exitosa
-        mensajeSesion.style.display = 'block';
-} else {
-  alert("Usuario o contraseña incorrectos");
-  }
-}
-
-// Validación de inicio de sesion
-document.getElementById('.btn-button3').addEventListener('click', function(event) {
-event.preventDefault();
-login();
+document.querySelector('a[onclick="mostrarSeccion(\'ropa\')"]').addEventListener('click', function(event) {
+    event.preventDefault();
+    mostrarSeccion('ropa');
+});
+document.querySelector('a[onclick="mostrarSeccion(\'zapatos\')"]').addEventListener('click', function(event) {
+    event.preventDefault();
+    mostrarSeccion('zapatos');
+});
+document.querySelector('a[onclick="mostrarSeccion(\'accesorios\')"]').addEventListener('click', function(event) {
+    event.preventDefault();
+    mostrarSeccion('accesorios');
+});
+document.querySelector('a[onclick="mostrarSeccion(\'publicar\')"]').addEventListener('click', function(event) {
+    event.preventDefault();
+    mostrarSeccion('publicar');
 });
 
 //Contador visitas
 function contarCargaPagina() {
   let elementoContador = localStorage.getItem("numero_vistas");
-  parseInt(elementoContador);
-
-  // Si es la primera vez que se carga la página o el contador no existe, inicialízalo en 1.
-  if (elementoContador == 0) {
+  if (elementoContador === null || parseInt(elementoContador) === 0) {
     elementoContador = 1;
   } else {
-    // Si ya existe, conviértelo a número y auméntalo en 1.
     elementoContador = parseInt(elementoContador) + 1;
   }
-  elementoContador.toString();
 
-  localStorage.setItem("numero_vistas", elementoContador);
-  document.getElementById("numero_vistas").textContent = elementoContador;
+  localStorage.setItem("numero_vistas", elementoContador.toString());
+  const numeroVistasElement = document.getElementById("numero_vistas");
+  if (numeroVistasElement) {
+    numeroVistasElement.textContent = elementoContador;
+  }
 }
+
+//Llama a la función cuando se cargue la página
+document.addEventListener('DOMContentLoaded', contarCargaPagina);
