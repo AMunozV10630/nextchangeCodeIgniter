@@ -228,7 +228,7 @@ document.getElementById('form-publicar').addEventListener('submit', function (ev
   //Agregar a la sección correspondiente
   const contenedorCategoria = document.querySelector(`#seccion-${tipo} .publications`);
   if (contenedorCategoria) {
-    // Clonar para que aparezca en ambas secciones (o crear uno nuevo si prefieres)
+    // Clonar para que aparezca en ambas secciones
     const clonPublicacion = nuevaPublicacion.cloneNode(true);
     contenedorCategoria.appendChild(clonPublicacion);
   }
@@ -293,3 +293,40 @@ function contarCargaPagina() {
 
 //Llama a la función cuando se cargue la página
 document.addEventListener('DOMContentLoaded', contarCargaPagina);
+
+//Banner cookies
+function mostrarBannerCookies() {
+      // Si ya existe el banner, no se agrega de nuevo
+      if (document.getElementById('banner-cookies')) return;
+
+      const banner = document.createElement('div');
+      banner.id = 'banner-cookies';
+      banner.style.position = 'fixed';
+      banner.style.left = '0';
+      banner.style.right = '0';
+      banner.style.bottom = '0';
+      banner.style.background = '#222';
+      banner.style.color = '#fff';
+      banner.style.padding = '20px';
+      banner.style.display = 'flex';
+      banner.style.justifyContent = 'center';
+      banner.style.alignItems = 'center';
+      banner.style.zIndex = '9999';
+
+      banner.innerHTML = `
+        <span style="margin-right:20px;">Este sitio utiliza cookies para mejorar tu experiencia. ¿Aceptas el uso de cookies?</span>
+        <button id="aceptar-cookies" style="margin-right:10px; padding: 10px 20px; cursor: pointer; border: none; border-radius: 5px;">Aceptar</button>
+        <button id="rechazar-cookies" style="padding: 10px 20px; cursor: pointer; border: none; border-radius: 5px;">No aceptar</button>
+      `;
+
+      document.body.appendChild(banner);
+
+      document.getElementById('aceptar-cookies').onclick = function() {
+        document.body.removeChild(banner);
+      };
+      document.getElementById('rechazar-cookies').onclick = function() {
+        document.body.removeChild(banner);
+      };
+    };
+
+document.addEventListener('DOMContentLoaded', mostrarBannerCookies);
